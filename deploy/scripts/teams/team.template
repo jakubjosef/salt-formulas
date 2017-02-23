@@ -1,0 +1,23 @@
+parameters:
+  linux:
+    system:
+      user:
+        ${SNAME}:
+          enabled: true
+          name: ${SNAME}
+          sudo: true
+          full_name: ${FNAME}
+          home: /home/${SNAME}
+          email: ${EMAIL}
+  openssh:
+    server:
+      enabled: true
+      user:
+        ${SNAME}:
+          enabled: true
+          public_keys: ${public_keys:${SNAME}}
+          user: ${linux:system:user:${SNAME}}
+  public_keys:
+    ${SNAME}:
+      - key: ${KEY}
+
